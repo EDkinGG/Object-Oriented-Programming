@@ -23,6 +23,7 @@ public:
 	// void display()
 	// {
 	// 	cout<<"class c "<<endl;
+	// 	// display();--->eta dile recusion hoye jabe
 	// } 
 	//-->> ei part uncomment korle ob.display() te ei display excute korbe....
 	// bt jodi eta evabe comment kora thake tokhon ob.display() ambiguous hobe 
@@ -38,7 +39,7 @@ void A :: display()
 int main()
 {
 	C ob;
-	// ob.display(); --> ambiguous
+	// ob.display(); //--> ambiguous
 	ob.A::display();
 	ob.B::display();
 	return 0;
