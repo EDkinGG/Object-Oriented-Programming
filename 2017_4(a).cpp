@@ -3,78 +3,59 @@ using namespace std;
 
 class Person
 {
-// protected:
-	string name;
+    string name;
 public:
-	Person()
-	{
-
-	}
-	Person( string s )
-	{
-		name = s;
-	}
-	virtual void info()
-	{
-		cout<<"Name: "<<this->name<<endl<<endl;
-	}
+    Person() {}
+    Person(string s): name(s) {}
+    virtual void info()
+    {
+        cout<<"Name : "<<this->name<<endl;
+    }
 };
 
 class Student:public Person
 {
-	int matric_number;
+    int matric_number;
 public:
-	Student():Person()
-	{
+    Student() {}
+    Student(string name1, int x):matric_number(x), Person(name1) {}
 
-	}
-	Student( string name1 , int x):Person( name1 ) 
-	{
-		matric_number = x;
-	}
-
-	void info()
-	{
-		// cout<<"Name: "<<this->name<<endl;//--> name show korte hole Person e Name Protected korte hobe!
-		cout<<"matric_number "<<this->matric_number<<endl<<endl;
-	}
+    void info()
+    {
+        Person::info();
+        cout<<"Matric Number : "<<this->matric_number<<endl;
+    }
 
 };
 
-class MasterStudent:public Person
+class MasterStudent:public Student
 {
-	string subject;
+    string subject;
 public:
-	MasterStudent():Person()
-	{
-
-	}
-	MasterStudent( string name2 , string s):Person( name2 )
-	{
-		subject = s;
-	}
-	void info()
-	{
-		// cout<<"Name: "<<this->name<<endl;//--> name show korte hole Person e Name Protected korte hobe!
-		cout<<"Subject "<<subject<<endl<<endl;
-	}
+    MasterStudent(){}
+    MasterStudent(string name2, int metric, string s):subject(s), Student(name2, metric){}
+    void info()
+    {
+        Student::info();
+        cout<<"Subject : "<<subject<<endl;
+    }
 };
 
 int main()
 {
-  	Person B("Rashed");
-  	Student DS("Tamim", 101 );
-  	MasterStudent MSD("Wali","CSE");
-  	Person *bptr;// Base Class Person er pointer bptr nilam!
+    Person B("Rashed");
+    Student DS("Tamim", 101 );
+    MasterStudent MSD("Wali", 34, "CSE");
+    Person *bptr;// Base Class Person er pointer bptr nilam!
 
-  	bptr = &B;
-  	bptr->info();
-
-  	bptr = &DS;
-  	bptr->info();
-
-  	bptr = &MSD;
-  	bptr->info();
-
+    bptr = &B;
+    bptr->info();
+    cout<<endl;
+    bptr = &DS;
+    bptr->info();
+    cout<<endl;
+    bptr = &MSD;
+    bptr->info();
+    cout<<endl;
     return 0;
 }
